@@ -1,0 +1,82 @@
+
+• Speech Recognition:
+o	We use the SpeechRecognition library to listen to and recognize speech from the microphone.
+o	The assistant captures audio input and converts it into text.
+
+• Speech-to-Text Translation:
+o	The recognized text is then processed by the pyttsx3 library, which converts it back into synthesized speech.
+o	This enables the assistant to communicate with the user effectively.
+
+ Wikipedia: As we all know Wikipedia is a great source of knowledge. Wikipedia module is used to get information from Wikipedia or to perform a Wikipedia search. To install this module type the below command in the terminal.
+
+•  Webbrowser: To perform Web Search. This module comes built-in with Python. 
+ 
+•  Ecapture: To capture images from your Camera. 
+
+•  Datetime: Date and Time are used to showing Date and Time. This module comes built-in with Python.
+
+• Operator: This module exports a set of functions corresponding to the intrinsic operators of Python. For example, operator.add(x, y) is equivalent to the expression x+y. The function names are those used for special methods; variants without leading and trailing '__' are also provided for convenience. 
+
+•  Sounddevice: Play and Record Sound with Python.
+
+•  Shazam: It helps recognizing songs playing in background
+
+
+--detalied review of used modules--
+
+ 
+o	SpeechRecognition 3.10.4: Library for performing speech recognition, with support for several engines and APIs, online and offline. Speech recognition engine/API support:
+  •	CMU Sphinx (works offline)
+  •	Google Speech Recognition
+  •	Google Cloud Speech API
+  •	Wit.ai
+  •	Microsoft Azure Speech
+  •	Microsoft Bing Voice Recognition (Deprecated)
+  •	Houndify API
+  •	IBM Speech to Text
+  •	Snowboy Hotword Detection (works offline)
+  •	Tensorflow
+  •	Vosk API (works offline)
+  •	OpenAI whisper (works offline)
+  •	Whisper API
+
+o	Shazam: Shazam's api takes a "signature" of a song to search in their database before returning a result. Python library for the Shazam API. This library is based off of ShazamAPI and SongRec. 
+
+o	Pyjokes: One line jokes for programmers (jokes as a service).
+
+o	Webbrowser: The webbrowser module provides a high-level interface to allow displaying web-based documents to users. Under most circumstances, simply calling the open() function from this module will do the right thing. If the environment variable BROWSER exists, it is interpreted as the os.pathsep-separated list of browsers to try ahead of the platform defaults. When the value of a list part contains the string %s, then it is interpreted as a literal browser command line to be used with the argument URL substituted for %s; if the part does not contain %s, it is simply interpreted as the name of the browser to launch.
+o	Wikipedia: Wikipedia is a Python library that makes it easy to access and parse data from Wikipedia. Search Wikipedia, get article summaries, get data like links and images from a page, and more. Wikipedia wraps the MediaWiki API so you can focus on using Wikipedia data, not getting it.
+o	ctypes : ctypes is a foreign function library for Python. It provides C compatible data types, and allows calling functions in DLLs or shared libraries. It can be used to wrap these libraries in pure Python. You load libraries by accessing them as attributes of these objects. cdll loads libraries which export functions using the standard cdecl calling convention, while windll libraries call functions using the stdcall calling convention. oledll also uses the stdcall calling convention, and assumes the functions return a Windows HRESULT error code. The error code is used to automatically raise an OSError exception when the function call fails.
+
+o	Operator: The operator module exports a set of efficient functions corresponding to the intrinsic operators of Python. For example, operator.add(x, y) is equivalent to the expression x+y. Many function names are those used for special methods, without the double underscores. For backward compatibility, many of these have a variant with the double underscores kept. The variants without the double underscores are preferred for clarity.
+
+The functions fall into categories that perform object comparisons, logical operations, mathematical operations and sequence operations.
+
+o	datetime: The datetime module supplies classes for manipulating dates and times.
+While date and time arithmetic is supported, the focus of the implementation is on efficient attribute extraction for output formatting and manipulation.
+
+o	Ecapture:
+•	Function: Capture photos Number of Arguments: 3
+	Arguments:
+•	Camera Index: Input the index of the webcam that you choose to use. Index 0 will be first webcam, Index 1 will be the second webcam, and so on and so forth.
+•	Window Name: Input False if a window with the captured image should not be displayed. A window name input as a string will show a window with the captured image
+•	Save Name: Input False if the captured image should not be saved. A save name input as a string will save the captured image with the desired name.
+
+o	Video Capture: Function: Record videos Number of Arguments: 4
+	Arguments:
+•	Camera Index: Input the index of the webcam that you choose to use. Index 0 will be first webcam, Index 1 will be the second webcam, and so on and so forth.
+•	Window Name: Input False if a window with the captured image should not be displayed. A window name input as a string will show a window with the captured image
+•	Save Name: Input False if the captured image should not be saved. A save name input as a string will save the recorded video with the desired name.
+•	Exit Key: The key that has to be pressed to end the recording.
+
+o	sounddevice: This Python module provides bindings for the PortAudio library and a few convenience functions to play and record NumPy arrays containing audio signals. The sounddevice module is available for Linux, macOS and Windows.
+
+o	scipy.io.wavfile.write: Write a NumPy array as a WAV file. 
+Format: scipy.io.wavfile.write(filename, rate, data)
+Parameters:
+o	filename: string or open file handle
+Output wav file.
+o	Rate int
+The sample rate (in samples/sec).
+o	Data : ndarray
+ A 1-D or 2-D NumPy array of either integer or float data-type. 
