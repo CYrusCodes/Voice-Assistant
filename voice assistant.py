@@ -1,4 +1,3 @@
-
 import speech_recognition as sr
 
 from ShazamAPI import Shazam
@@ -45,6 +44,7 @@ def eval_binary_expr(*args):
      return get_operator_fn(oper)(op1, op2)
 
 
+      
 
 def record():
     freq = 44100
@@ -71,11 +71,17 @@ def recog():
        
         print(name) # current offset & shazam response to recognize requests
         speak("it's"+name)
-    except:
+        first_url = 'https://www.youtube.com/results?search_query='+name
+        webbrowser.open_new_tab(first_url)      
+    except Exception as e:
         speak("could not find")
         print("could not find")
+        pass
 
-
+def recognizesong():
+       speak("play the song....")
+       record()
+       recog()
 
 def takeCommand():  #will take command from user recognizing what is being said 
     r = sr.Recognizer()
@@ -99,88 +105,137 @@ def takeCommand():  #will take command from user recognizing what is being said
      
     return query
 
-if __name__=="__main__":
+def infiniteloop(query):
+    #while("stop" not in query):
+        if("Google assistant"in query) or ("google assistant"in query) :
+          return 
+        if ('stop the program' in query):
+              
+              exit()
+
+        else:
+            infiniteloop(query=takeCommand().lower())
+
+def mainfile():
     #clear = lambda: os.system('cls')
-    speak("hi, how may I help you")
-    query = takeCommand().lower()
-
-    if 'wikipedia' in query:
-            speak('Searching Wikipedia...')
-            query = query.replace("wikipedia", "")
-            results = wikipedia.summary(query, sentences = 3)
-            speak("According to Wikipedia")
-            print(results)
-            speak(results)
-    elif 'open google' in query:
-            speak("Here you go to Google\n")
-            first_url = 'https://www.google.com/'
-            webbrowser.open_new_tab(first_url)
-    elif "open youtube" in query:
-            speak("Here you go to youtube\n")
-            first_url = 'https://www.youtube.com/'
-            webbrowser.open_new_tab(first_url)
-    elif "in youtube" in query:
-            speak("song name please")
-            query1 = takeCommand().lower()
-            name=query1.split()
-            str=''
-            for i in range(len(name)):
-                    if(i==len(name)-1):
-                        str=str+name[i]
-                    else:
-                        str=str+name[i]+'+'
-            first_url = 'https://www.youtube.com/results?search_query='+str
-            webbrowser.open_new_tab(first_url)        
-    elif 'joke' in query:
-            joke=pyjokes.get_joke()
-            print(joke)
-            speak(joke)
-
-    
-    elif "calculate" in query:
-        #  query.replace("calculate", "",10)
-          answer=eval_binary_expr(*(query.split()))
-          print(answer)
-          speak(answer)
-
-    elif "camera" in query or "take a photo" in query or "capture a photo" in query:
-            speak("smile please")
-            ec.capture(0, "Jarvis Camera ", "img.jpg")
-    
-    elif "where is" in query:
-            query = query.replace("where is", "")
-            location = query
-            speak("User asked to Locate")
-            speak(location)
-            webbrowser.open("https://www.google.com/search?q=" + location)
-
-    elif "write a note" in query:
-            speak("What should i write, sir")
-            note = takeCommand()
-            file = open('jarvis.txt', 'w')
-            try:
-                speak("Sir, Should i include date and time")
-                snfm = takeCommand()
-                if 'yes' in snfm or 'sure' in snfm:
-                    strTime = datetime.datetime.now().strftime("% H:% M:% S")
-                    file.write(strTime)
-                    file.write(" :- ")
-                    file.write(note)
-                else:
-                    file.write(note)
-            except:
-                  file.write(note)
-
-   
-
-    elif "lock" in query:
-                speak("locking the device")
-                ctypes.windll.user32.LockWorkStation()
-    elif "what is this song" or "recognise this song" in query:
-         #song recogniser
-         speak("play the song....")
-         record()
-         recog()
+    if infiniteloop(query=takeCommand().lower())== 'stop':
+          speak("stopped")
+          print("stopped")
+        
+          exit()
     else:
-          speak("did not get")
-          print("did not get")
+        speak("hi, how may I help you")
+        print("hi, how may I help you")
+        query = takeCommand().lower()
+
+        if "what is this song" in query or "recognise this song" in query:
+            #song recogniser
+            recognizesong()
+            mainfile()
+            
+        if 'wikipedia' in query:
+                speak('Searching Wikipedia...')
+                query = query.replace("wikipedia", "")
+                results = wikipedia.summary(query, sentences = 3)
+                speak("According to Wikipedia")
+                print(results)
+                speak(results)
+                mainfile()
+        if 'open google' in query:
+                speak("Here you go to Google\n")
+                first_url = 'https://www.google.com/'
+                webbrowser.open_new_tab(first_url)
+                
+        if 'weather' in query:
+              speak("today's weather report is here...\n")
+              first_url = 'https://www.google.com/search?q=weather'
+              webbrowser.open_new_tab(first_url)
+              mainfile()
+
+        if "open youtube" in query:
+                speak("Here you go to youtube\n")
+                first_url = 'https://www.youtube.com/'
+                webbrowser.open_new_tab(first_url)
+                mainfile()
+        if "in youtube" in query:
+                speak("song name please")
+                query1 = takeCommand().lower()
+                name=query1.split()
+                str=''
+                for i in range(len(name)):
+                        if(i==len(name)-1):
+                            str=str+name[i]
+                        else:
+                            str=str+name[i]+'+'
+                first_url = 'https://www.youtube.com/results?search_query='+str
+                webbrowser.open_new_tab(first_url) 
+                mainfile()       
+        if 'joke' in query:
+                joke=pyjokes.get_joke()
+                print(joke)
+                speak(joke)
+                mainfile()
+
+        
+        if "calculate" in query:
+            #  query.replace("calculate", "",10)
+            answer=eval_binary_expr(*(query.split()))
+            print(answer)
+            speak(answer)
+            mainfile()
+
+        if "camera" in query or "take a photo" in query or "capture a photo" in query:
+                speak("smile please")
+                ec.capture(0, "Jarvis Camera ", "img.jpg")
+                mainfile()
+        
+        if "where is" in query:
+                query = query.replace("where is", "")
+                location = query
+                speak("User asked to Locate")
+                speak(location)
+                webbrowser.open("https://www.google.com/search?q=" + location)
+                mainfile()
+
+        if "write a note" in query:
+                speak("What should i write, sir")
+                note = takeCommand()
+                file = open('jarvis.txt', 'w')
+                try:
+                    speak("Sir, Should i include date and time")
+                    snfm = takeCommand()
+                    if 'yes' in snfm or 'sure' in snfm:
+                        strTime = datetime.datetime.now().strftime("% H:% M:% S")
+                        file.write(strTime)
+                        file.write(" :- ")
+                        file.write(note)
+                    else:
+                        file.write(note)
+                except:
+                    file.write(note)
+                mainfile()
+
+
+        if "lock" in query:
+                    speak("locking the device")
+                    ctypes.windll.user32.LockWorkStation()
+        #if len(query)==0:
+            #speak("did not get+1")
+           # print("did not get+1")
+          #  mainfile()
+        
+        if ('stop the program' in query):
+             speak("stopped")
+             print("stopped")
+             exit()
+        
+        #else:
+           # speak("did not get from else")
+            #print("did not get")
+
+        mainfile()
+
+
+
+if __name__=="__main__":
+     mainfile()
