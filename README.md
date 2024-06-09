@@ -3,17 +3,18 @@ Also it can find an unknown song for you just by asking it to recognize a song a
 
 basic features:
 
-•	Searching through Wikipedia
-•	Opening an app or a website:
+1.	Searching through Wikipedia
+
+2.	Opening an app or a website:
   o	Google (Basic search and Location)
   o	Youtube
   o weather report
   
-o	Calculator
-o	Taking notes through voice
-o clicking pictures
-o locking pc
-o 
+3.	Calculator
+4.	Taking notes through voice
+5. clicking pictures
+6. locking pc
+ 
 
 
 
